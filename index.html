@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elbe Box — Exklusive Geschenkboxen aus Hamburg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5;--dark:#0F0F0F;--gold:#B8912E;--gold-l:#F9F2E4;--gold-d:#8A6B1E;
+  --text:#1A1A1A;--muted:#7D776D;--border:#DDD7CC;--white:#fff;
+  --green:#2A6B4A;--green-bg:#E8F2EC;--cream:#F0EBE3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,15,.92);backdrop-filter:blur(12px);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,48px);border-bottom:1px solid #1E1E1E}
+.logo{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--white);letter-spacing:5px}
+.logo b{color:var(--gold);font-weight:500}
+.nav-r{display:flex;align-items:center;gap:16px}
+.lang{display:flex;border:1px solid #333;border-radius:3px;overflow:hidden}
+.lang button{padding:4px 13px;font-size:10px;font-weight:500;letter-spacing:1.5px;cursor:pointer;border:none;background:transparent;color:#666;font-family:'DM Sans',sans-serif;transition:.12s}
+.lang button.on{background:var(--gold);color:var(--white)}
+.nav-cta{padding:8px 20px;background:var(--gold);color:var(--white);border:none;border-radius:4px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:.12s}
+.nav-cta:hover{background:var(--gold-d)}
+
+/* HERO */
+.hero{height:100vh;background:var(--dark);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:0 clamp(20px,5vw,80px)}
+.hero-bg{position:absolute;inset:0;opacity:.08;background:radial-gradient(ellipse at 70% 50%,#B8912E 0%,transparent 60%)}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:center;gap:clamp(40px,6vw,100px);max-width:1200px;width:100%}
+.hero-text{flex:1;min-width:0}
+.hero-tag{font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5.5vw,64px);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:#8A8278;line-height:1.7;max-width:440px;margin-bottom:28px;font-weight:300}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.h-badge{font-size:11px;color:var(--white);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:30px;display:flex;align-items:center;gap:6px}
+.h-badge span{color:var(--gold)}
+.hero-cta{display:inline-block;padding:14px 36px;background:var(--gold);color:var(--white);border:none;border-radius:5px;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:.12s}
+.hero-cta:hover{background:var(--gold-d);transform:translateY(-1px)}
+
+/* HERO IMAGE — 3 stacked boxes illustration */
+.hero-visual{width:clamp(260px,32vw,420px);flex-shrink:0;position:relative;height:clamp(300px,40vw,480px)}
+.box-illust{position:absolute;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);transition:.3s}
+.box-illust.b1{width:78%;height:55%;bottom:0;left:0;background:linear-gradient(135deg,#2A2520,#1E1B17);border:1px solid #3A3530;z-index:3}
+.box-illust.b2{width:68%;height:48%;bottom:18%;right:0;background:linear-gradient(135deg,#342E25,#28231D);border:1px solid #4A4438;z-index:2;transform:rotate(2deg)}
+.box-illust.b3{width:58%;height:42%;top:0;left:12%;background:linear-gradient(135deg,#3E362B,#302A22);border:1px solid #5A5040;z-index:1;transform:rotate(-3deg)}
+.box-label{position:absolute;bottom:16px;left:16px}
+.box-label p{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--white);font-weight:400;opacity:.9}
+.box-label span{font-size:20px;color:var(--gold);font-weight:300}
+.box-ribbon{position:absolute;top:0;left:50%;width:20px;height:100%;background:linear-gradient(180deg,var(--gold),transparent);opacity:.15;transform:translateX(-50%)}
+.box-seal{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);opacity:.7}
+.box-items{position:absolute;top:14px;left:16px;display:flex;gap:6px}
+.box-item{font-size:14px;opacity:.6}
+
+/* SECTION: BOXES */
+.section{padding:clamp(48px,8vh,80px) clamp(20px,5vw,80px);max-width:1100px;margin:0 auto}
+.sec-tag{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,40px);font-weight:300;text-align:center;color:var(--text);margin-bottom:6px}
+.sec-sub{font-size:14px;color:var(--muted);text-align:center;max-width:480px;margin:0 auto 40px;line-height:1.65}
+
+/* BOX GRID */
+.box-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:0}
+
+.bcard{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s}
+.bcard:hover{border-color:var(--gold);box-shadow:0 8px 30px rgba(184,145,46,.1);transform:translateY(-2px)}
+.bcard.sel{border-color:var(--gold);border-width:2px;box-shadow:0 8px 30px rgba(184,145,46,.15)}
+
+/* card visual area */
+.bcard-vis{height:140px;background:var(--dark);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bcard-vis::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 80%,rgba(184,145,46,.12),transparent 60%)}
+.bcard-icons{position:relative;z-index:2;display:flex;gap:14px;font-size:28px;opacity:.7}
+.bcard-tag{position:absolute;top:10px;left:10px;z-index:2;font-size:8px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+.btag-green{color:var(--green);background:rgba(42,107,74,.2)}
+.btag-gold{color:var(--gold);background:rgba(184,145,46,.2)}
+.bcard-sel-badge{position:absolute;top:10px;right:10px;z-index:2;width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--white);display:none;align-items:center;justify-content:center;font-size:11px}
+.bcard.sel .bcard-sel-badge{display:flex}
+
+/* card body */
+.bcard-body{padding:18px 20px}
+.bcard-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.bcard-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--text)}
+.bcard-price{font-size:22px;font-weight:300;color:var(--gold)}
+.bcard-price small{font-size:11px;color:var(--muted)}
+
+/* highlights */
+.bcard-hl{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.hl{font-size:10.5px;color:var(--muted);background:var(--cream);padding:4px 9px;border-radius:20px;white-space:nowrap}
+
+/* expandable */
+.bcard-expand{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.bcard.open .bcard-expand{max-height:250px}
+
+.bcard-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-bottom:8px}
+.bcard-list li{font-size:11px;color:var(--muted);display:flex;align-items:flex-start;gap:5px;line-height:1.35}
+.bcard-list li::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.bcard-occ{font-size:10px;color:#AAA59C;font-style:italic}
+
+.bcard-toggle{display:flex;align-items:center;justify-content:center;padding:6px 0 2px;font-size:10px;color:var(--gold);letter-spacing:1px;gap:4px;border-top:1px solid var(--border);margin-top:10px}
+.bcard-toggle .arrow{transition:.2s;display:inline-block}
+.bcard.open .bcard-toggle .arrow{transform:rotate(180deg)}
+
+/* FORM SECTION */
+.form-section{background:var(--dark);padding:clamp(48px,8vh,80px) clamp(20px,5vw,80px)}
+.form-inner{max-width:720px;margin:0 auto}
+.f-tag{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px}
+.f-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,36px);font-weight:300;color:var(--white);text-align:center;margin-bottom:4px}
+.f-sub{font-size:13px;color:#7A756C;text-align:center;margin-bottom:32px;line-height:1.6}
+
+/* tier selector */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.tier-o input{display:none}
+.tier-o label{display:flex;flex-direction:column;align-items:center;padding:10px 6px;background:#1A1A1A;border:1.5px solid #2A2A2A;border-radius:8px;cursor:pointer;transition:.12s;text-align:center;gap:2px}
+.tier-o label .tn{font-size:12px;font-weight:500;color:var(--white)}
+.tier-o label .tp{font-size:16px;font-weight:300;color:var(--gold)}
+.tier-o label .tt{font-size:9px;color:#666}
+.tier-o input:checked+label{border-color:var(--gold);border-width:2px;background:#1E1B15}
+
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld.full{grid-column:1/-1}
+.fld-label{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#666}
+input[type=text],input[type=email],select{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--white);background:#1A1A1A;border:1px solid #2A2A2A;border-radius:6px;padding:10px 14px;outline:none;transition:border-color .12s;width:100%;height:40px}
+input::placeholder{color:#4A4A4A}
+input:focus,select:focus{border-color:var(--gold)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:28px}
+option{background:#1A1A1A;color:var(--white)}
+
+.submit{margin-top:20px;padding:0 20px;height:48px;background:var(--gold);color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;transition:.12s;width:100%}
+.submit:hover{background:var(--gold-d)}
+.fine{font-size:10px;color:#555;text-align:center;margin-top:10px}
+
+.ok{display:none;text-align:center;padding:40px 0}
+.ok h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--gold);margin-bottom:8px}
+.ok p{font-size:14px;color:#7A756C;line-height:1.6}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid #1E1E1E;padding:24px clamp(20px,5vw,80px);display:flex;align-items:center;justify-content:space-between}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--white);letter-spacing:4px}
+.foot-logo b{color:var(--gold);font-weight:500}
+footer p{font-size:11px;color:#555}
+footer a{color:var(--gold);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner{flex-direction:column;text-align:center;gap:30px;padding-top:60px}
+  .hero-sub{margin:0 auto 20px}
+  .hero-badges{justify-content:center}
+  .hero-visual{width:240px;height:280px}
+  .bcard-list{grid-template-columns:1fr}
+  .fields{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:6px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Elbe <b>Box</b></div>
+  <div class="nav-r">
+    <div class="lang">
+      <button class="on" onclick="sw('de',this)">DE</button>
+      <button onclick="sw('en',this)">EN</button>
+    </div>
+    <a href="#interest" class="nav-cta" data-de="Interesse bekunden" data-en="Register Interest">Interesse bekunden</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-tag" data-de="Hamburg · Manufaktur-Geschenke" data-en="Hamburg · Artisan Gifts">Hamburg · Manufaktur-Geschenke</p>
+      <h1 data-de="Geschenkboxen,<br>die in <em>Erinnerung</em><br>bleiben." data-en="Gift boxes<br>your clients<br>will <em>remember.</em>">Geschenkboxen,<br>die in <em>Erinnerung</em><br>bleiben.</h1>
+      <p class="hero-sub" data-de="Handverlesene Produkte aus Hamburger Manufakturen. Premium verpackt, persönlich zugestellt, steuerlich absetzbar." data-en="Hand-selected products from Hamburg's finest producers. Premium packaging, personal delivery, tax-deductible.">Handverlesene Produkte aus Hamburger Manufakturen. Premium verpackt, persönlich zugestellt, steuerlich absetzbar.</p>
+      <div class="hero-badges">
+        <div class="h-badge"><span>☕</span> <span data-de="Elbgold Kaffee" data-en="Elbgold Coffee">Elbgold Kaffee</span></div>
+        <div class="h-badge"><span>📓</span> <span>Leuchtturm1917</span></div>
+        <div class="h-badge"><span>🍯</span> <span data-de="Regionaler Honig" data-en="Regional Honey">Regionaler Honig</span></div>
+      </div>
+      <a href="#boxes" class="hero-cta" data-de="Boxen entdecken ↓" data-en="Discover the Boxes ↓">Boxen entdecken ↓</a>
+    </div>
+    <div class="hero-visual">
+      <div class="box-illust b3">
+        <div class="box-ribbon"></div>
+        <div class="box-seal">EB</div>
+        <div class="box-items"><span class="box-item">☕</span><span class="box-item">🍫</span><span class="box-item">🕯</span></div>
+        <div class="box-label"><span>€160</span><p>VIP</p></div>
+      </div>
+      <div class="box-illust b2">
+        <div class="box-ribbon"></div>
+        <div class="box-seal">EB</div>
+        <div class="box-items"><span class="box-item">☕</span><span class="box-item">📓</span></div>
+        <div class="box-label"><span>€90</span><p>Premium</p></div>
+      </div>
+      <div class="box-illust b1">
+        <div class="box-ribbon"></div>
+        <div class="box-seal">EB</div>
+        <div class="box-items"><span class="box-item">☕</span><span class="box-item">🍫</span><span class="box-item">🍯</span></div>
+        <div class="box-label"><span>€45</span><p>Starter</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOXES -->
+<section class="section" id="boxes">
+  <p class="sec-tag" data-de="Drei Boxen · Ein Standard" data-en="Three Boxes · One Standard">Drei Boxen · Ein Standard</p>
+  <h2 class="sec-title" data-de="Wählen Sie Ihre Box" data-en="Choose Your Box">Wählen Sie Ihre Box</h2>
+  <p class="sec-sub" data-de="Klicken Sie auf eine Box für Details. Jede Box wird von Hand in Hamburg kuratiert und verpackt." data-en="Click any box for details. Each box is hand-curated and packed in Hamburg.">Klicken Sie auf eine Box für Details. Jede Box wird von Hand in Hamburg kuratiert und verpackt.</p>
+
+  <div class="box-grid">
+
+    <!-- STARTER -->
+    <div class="bcard sel open" id="b-s">
+      <div class="bcard-vis">
+        <span class="bcard-tag btag-green" data-de="✓ Absetzbar" data-en="✓ Deductible">✓ Absetzbar</span>
+        <span class="bcard-sel-badge">✓</span>
+        <div class="bcard-icons">☕ 🍫 🍯 ✉</div>
+      </div>
+      <div class="bcard-body">
+        <div class="bcard-top">
+          <span class="bcard-name">Starter</span>
+          <span class="bcard-price">€45 <small>netto</small></span>
+        </div>
+        <div class="bcard-hl">
+          <span class="hl" data-de="☕ Elbgold Kaffee" data-en="☕ Elbgold Coffee">☕ Elbgold Kaffee</span>
+          <span class="hl" data-de="🍫 Schokolade" data-en="🍫 Chocolate">🍫 Schokolade</span>
+          <span class="hl" data-de="🍯 Honig" data-en="🍯 Honey">🍯 Honig</span>
+          <span class="hl" data-de="✉ Karte" data-en="✉ Card">✉ Karte</span>
+        </div>
+        <div class="bcard-expand">
+          <ul class="bcard-list">
+            <li data-de="Specialty Kaffee — Elbgold Hamburg (100g)" data-en="Specialty coffee — Elbgold Hamburg (100g)">Specialty Kaffee — Elbgold Hamburg (100g)</li>
+            <li data-de="2× Handwerks-Schokoladentafeln" data-en="2× Artisan chocolate bars">2× Handwerks-Schokoladentafeln</li>
+            <li data-de="Regionaler Honig — SH (100g)" data-en="Regional honey — SH (100g)">Regionaler Honig — SH (100g)</li>
+            <li data-de="Handgeschriebene Karte" data-en="Handwritten card">Handgeschriebene Karte</li>
+            <li data-de="Premium Kraftbox & Goldband" data-en="Premium kraft box & gold ribbon">Premium Kraftbox & Goldband</li>
+            <li data-de="Unter €50 — voll absetzbar" data-en="Under €50 — fully deductible">Unter €50 — voll absetzbar</li>
+          </ul>
+          <p class="bcard-occ" data-de="Ideal für: Weihnachtsgeschenke · Dankeschön · Team" data-en="Perfect for: Christmas · Thank-you · Team">Ideal für: Weihnachtsgeschenke · Dankeschön · Team</p>
+        </div>
+        <div class="bcard-toggle" data-de-open="Weniger ▴" data-de-closed="Details ▾" data-en-open="Less ▴" data-en-closed="Details ▾"><span class="arrow">▾</span> <span class="toggle-text" data-de="Details" data-en="Details">Details</span></div>
+      </div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="bcard" id="b-p">
+      <div class="bcard-vis">
+        <span class="bcard-tag btag-gold" data-de="Schlüsselkunden" data-en="Key Accounts">Schlüsselkunden</span>
+        <span class="bcard-sel-badge">✓</span>
+        <div class="bcard-icons">☕ 🍫 📓 🍵</div>
+      </div>
+      <div class="bcard-body">
+        <div class="bcard-top">
+          <span class="bcard-name">Premium</span>
+          <span class="bcard-price">€90 <small>netto</small></span>
+        </div>
+        <div class="bcard-hl">
+          <span class="hl" data-de="☕ Speicherstadt" data-en="☕ Speicherstadt">☕ Speicherstadt</span>
+          <span class="hl">📓 Leuchtturm1917</span>
+          <span class="hl" data-de="🍵 Teeselektion" data-en="🍵 Tea Selection">🍵 Teeselektion</span>
+          <span class="hl" data-de="🍯 Honig 250g" data-en="🍯 Honey 250g">🍯 Honig 250g</span>
+        </div>
+        <div class="bcard-expand">
+          <ul class="bcard-list">
+            <li data-de="Kaffee — Speicherstadt Rösterei (250g)" data-en="Coffee — Speicherstadt roastery (250g)">Kaffee — Speicherstadt Rösterei (250g)</li>
+            <li data-de="3× Premium Schokoladentafeln" data-en="3× Premium chocolate bars">3× Premium Schokoladentafeln</li>
+            <li data-de="Wildblumenhonig — SH (250g)" data-en="Wildflower honey — SH (250g)">Wildblumenhonig — SH (250g)</li>
+            <li data-de="Leuchtturm1917 Notizbuch" data-en="Leuchtturm1917 notebook">Leuchtturm1917 Notizbuch</li>
+            <li data-de="Lose-Blatt Teeselektion" data-en="Loose-leaf tea selection">Lose-Blatt Teeselektion</li>
+            <li data-de="Geschenkbox mit Satinband" data-en="Gift box with satin ribbon">Geschenkbox mit Satinband</li>
+          </ul>
+          <p class="bcard-occ" data-de="Ideal für: Schlüsselkunden · Onboarding · Meilensteine" data-en="Perfect for: Key clients · Onboarding · Milestones">Ideal für: Schlüsselkunden · Onboarding · Meilensteine</p>
+        </div>
+        <div class="bcard-toggle"><span class="arrow">▾</span> <span class="toggle-text" data-de="Details" data-en="Details">Details</span></div>
+      </div>
+    </div>
+
+    <!-- VIP -->
+    <div class="bcard" id="b-v">
+      <div class="bcard-vis">
+        <span class="bcard-tag btag-gold" data-de="White-Label" data-en="White-Label">White-Label</span>
+        <span class="bcard-sel-badge">✓</span>
+        <div class="bcard-icons">☕ 🍫 📓 🕯 🍵</div>
+      </div>
+      <div class="bcard-body">
+        <div class="bcard-top">
+          <span class="bcard-name">VIP</span>
+          <span class="bcard-price">€160 <small data-de="ab 20 Stk" data-en="min. 20">ab 20 Stk</small></span>
+        </div>
+        <div class="bcard-hl">
+          <span class="hl" data-de="☕ Bio Single-Origin" data-en="☕ Organic Single-Origin">☕ Bio Single-Origin</span>
+          <span class="hl">📓 Leuchtturm A5</span>
+          <span class="hl" data-de="🕯 Hamburger Kerze" data-en="🕯 Hamburg Candle">🕯 Hamburger Kerze</span>
+          <span class="hl" data-de="🎨 Custom Branding" data-en="🎨 Custom Branding">🎨 Custom Branding</span>
+        </div>
+        <div class="bcard-expand">
+          <ul class="bcard-list">
+            <li data-de="Bio-Kaffee Single-Origin (500g)" data-en="Organic single-origin coffee (500g)">Bio-Kaffee Single-Origin (500g)</li>
+            <li data-de="3× Premium Schokoladentafeln" data-en="3× Premium chocolate bars">3× Premium Schokoladentafeln</li>
+            <li data-de="Artisan-Honig — Premium (500g)" data-en="Artisan honey — premium (500g)">Artisan-Honig — Premium (500g)</li>
+            <li data-de="Leuchtturm1917 A5 Hardcover" data-en="Leuchtturm1917 A5 hardcover">Leuchtturm1917 A5 Hardcover</li>
+            <li data-de="Kuratierte Tee-Dose" data-en="Curated tea tin">Kuratierte Tee-Dose</li>
+            <li data-de="Hamburger Sojawachs-Kerze" data-en="Hamburg soy wax candle">Hamburger Sojawachs-Kerze</li>
+            <li data-de="Snack — Haferkeks o. Marzipan" data-en="Snack — oat biscuit or marzipan">Snack — Haferkeks o. Marzipan</li>
+            <li data-de="Custom Branding & Karte" data-en="Custom branding & card">Custom Branding & Karte</li>
+          </ul>
+          <p class="bcard-occ" data-de="Ideal für: Konferenzen · VIP-Kunden · Investoren" data-en="Perfect for: Conferences · VIP clients · Investors">Ideal für: Konferenzen · VIP-Kunden · Investoren</p>
+        </div>
+        <div class="bcard-toggle"><span class="arrow">▾</span> <span class="toggle-text" data-de="Details" data-en="Details">Details</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="interest">
+  <div class="form-inner">
+    <p class="f-tag" data-de="Jetzt Interesse bekunden" data-en="Register Your Interest">Jetzt Interesse bekunden</p>
+    <h2 class="f-title" data-de="Welche Box passt zu Ihnen?" data-en="Which box is right for you?">Welche Box passt zu Ihnen?</h2>
+    <p class="f-sub" data-de="Keine Verpflichtung. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen." data-en="No commitment. We'll reply personally within 24 hours.">Keine Verpflichtung. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p>
+
+    <div id="form-wrap">
+      <form id="mf" name="elbebox" method="POST">
+        <input type="hidden" name="box-tier" id="ht" value="Starter">
+
+        <div class="tiers">
+          <div class="tier-o"><input type="radio" name="td" id="ts" value="Starter" checked><label for="ts"><span class="tn">Starter</span><span class="tp">€45</span><span class="tt" data-de="Absetzbar" data-en="Deductible">Absetzbar</span></label></div>
+          <div class="tier-o"><input type="radio" name="td" id="tp" value="Premium"><label for="tp"><span class="tn">Premium</span><span class="tp">€90</span><span class="tt" data-de="Schlüsselkunden" data-en="Key accounts">Schlüsselkunden</span></label></div>
+          <div class="tier-o"><input type="radio" name="td" id="tv" value="VIP"><label for="tv"><span class="tn">VIP</span><span class="tp">€160</span><span class="tt" data-de="Ab 20 Boxen" data-en="Min. 20 boxes">Ab 20 Boxen</span></label></div>
+        </div>
+
+        <div class="fields">
+          <div class="fld"><label class="fld-label" data-de="Ihr Name" data-en="Your name">Ihr Name</label><input type="text" name="name" placeholder="Anna Müller" required></div>
+          <div class="fld"><label class="fld-label" data-de="Unternehmen" data-en="Company">Unternehmen</label><input type="text" name="company" placeholder="Firma GmbH" required></div>
+          <div class="fld"><label class="fld-label" data-de="Geschäfts-E-Mail" data-en="Work email">Geschäfts-E-Mail</label><input type="email" name="email" placeholder="anna@firma.de" required></div>
+          <div class="fld">
+            <label class="fld-label" data-de="Anzahl Boxen" data-en="Number of boxes">Anzahl Boxen</label>
+            <select name="quantity" required>
+              <option value="" disabled selected data-de="— wählen —" data-en="— select —">— wählen —</option>
+              <option value="5-10">5 – 10</option><option value="10-25">10 – 25</option><option value="25-50">25 – 50</option><option value="50+">50+</option>
+            </select>
+          </div>
+          <div class="fld full">
+            <label class="fld-label" data-de="Wann möchten Sie verschenken?" data-en="When would you like to gift?">Wann möchten Sie verschenken?</label>
+            <select name="timing" required>
+              <option value="" disabled selected data-de="— wählen —" data-en="— select —">— wählen —</option>
+              <option value="Q4 2026" data-de="Q4 2026 — Weihnachtssaison" data-en="Q4 2026 — Christmas season">Q4 2026 — Weihnachtssaison</option>
+              <option value="2027" data-de="Anfang 2027" data-en="Early 2027">Anfang 2027</option>
+              <option value="ongoing" data-de="Laufend über das Jahr" data-en="Ongoing throughout the year">Laufend über das Jahr</option>
+              <option value="tbd" data-de="Noch nicht sicher" data-en="Not sure yet">Noch nicht sicher</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="submit" data-de="Interesse senden →" data-en="Send my interest →">Interesse senden →</button>
+        <p class="fine" data-de="Kein Spam · Unverbindlich · hello@elbaybox.de" data-en="No spam · No commitment · hello@elbaybox.de">Kein Spam · Unverbindlich · hello@elbaybox.de</p>
+      </form>
+    </div>
+
+    <div class="ok" id="ok">
+      <h3 data-de="Vielen Dank!" data-en="Thank you!">Vielen Dank!</h3>
+      <p data-de="Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.<br>— Elbe Box Hamburg" data-en="We'll be in touch within 24 hours.<br>— Elbe Box Hamburg">Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.<br>— Elbe Box Hamburg</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Elbe <b>Box</b></div>
+  <p data-de="Manufaktur-Geschenkboxen aus Hamburg" data-en="Artisan gift boxes from Hamburg">Manufaktur-Geschenkboxen aus Hamburg</p>
+  <p><a href="mailto:hello@elbaybox.de">hello@elbaybox.de</a></p>
+</footer>
+
+<script>
+var lang='de';
+var tierMap={s:'Starter',p:'Premium',v:'VIP'};
+var cardMap={s:'b-s',p:'b-p',v:'b-v'};
+var radioMap={s:'ts',p:'tp',v:'tv'};
+var cards=document.querySelectorAll('.bcard');
+
+cards.forEach(function(card){
+  card.addEventListener('click',function(){
+    var tid=card.id.replace('b-','');
+    // select
+    cards.forEach(function(c){c.classList.remove('sel')});
+    card.classList.add('sel');
+    // toggle expand
+    card.classList.toggle('open');
+    // sync form
+    document.getElementById('ht').value=tierMap[tid];
+    var r=document.getElementById(radioMap[tid]);
+    if(r)r.checked=true;
+    // update toggle text
+    updateToggleTexts();
+  });
+});
+
+// Sync form tier to cards
+document.querySelectorAll('.tier-o label').forEach(function(label){
+  label.addEventListener('click',function(){
+    var input=label.previousElementSibling;
+    if(!input)return;
+    var v=input.value.charAt(0).toLowerCase();
+    var target=document.getElementById(cardMap[v]);
+    if(target){
+      cards.forEach(function(c){c.classList.remove('sel','open')});
+      target.classList.add('sel','open');
+      document.getElementById('ht').value=tierMap[v];
+      input.checked=true;
+      target.scrollIntoView({behavior:'smooth',block:'center'});
+      updateToggleTexts();
+    }
+  });
+});
+
+function updateToggleTexts(){
+  cards.forEach(function(c){
+    var tt=c.querySelector('.toggle-text');
+    if(!tt)return;
+    var isOpen=c.classList.contains('open');
+    if(lang==='de') tt.textContent=isOpen?'Weniger':'Details';
+    else tt.textContent=isOpen?'Less':'Details';
+    var arrow=c.querySelector('.arrow');
+    if(arrow) arrow.textContent=isOpen?'▴':'▾';
+  });
+}
+
+function sw(l,btn){
+  lang=l;
+  document.querySelectorAll('.lang button').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){
+    var v=el.getAttribute('data-'+l);
+    if(el.tagName==='OPTION')el.textContent=v;
+    else if(el.tagName==='INPUT'||el.tagName==='BUTTON')el.textContent=v;
+    else el.innerHTML=v;
+  });
+  updateToggleTexts();
+}
+
+document.getElementById('mf').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  fetch('https://formspree.io/f/meewvzdv',{method:'POST',headers:{'Accept':'application/json'},
+    body:new FormData(f)
+  }).then(function(){
+    document.getElementById('form-wrap').style.display='none';
+    document.getElementById('ok').style.display='block';
+  }).catch(function(){
+    document.getElementById('form-wrap').style.display='none';
+    document.getElementById('ok').style.display='block';
+  });
+});
+</script>
+</body>
+</html>
